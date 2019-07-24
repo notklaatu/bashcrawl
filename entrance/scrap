@@ -1,0 +1,9 @@
+Descend, bold traveller, into the dungeons of Posix, which the shadow of Scartaris touches, and you will learn the magickal incantations of the Wildebeest.
+
+I have done this, in the place of the singing flame:
+
+```
+$ symlink --symbolic ../../../../.rift portal
+```
+
+[signed] Arnnisen the Gray

@@ -1,0 +1,17 @@
+
+It is pitch black in these catacombs.
+You have a magical spell that lists all items in a room.
+
+To see in the dark, type:     ls
+To move around, type:         cd <directory>
+
+Try looking around this room.
+Then move into one of the next rooms.
+
+EXAMPLE:
+
+$ ls 
+$ cd cellar
+
+Remember to cast ``ls`` when you get into the next room!
+
