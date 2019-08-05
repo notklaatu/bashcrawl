@@ -1,11 +1,15 @@
 
-You seem to have reached the end of this hall.
-
-Turn back and try another path.
-
-If you are drawing a map of your progress,
-you can always get the name of your working
-directory with this command:
-
-$ pwd
+# You seem to have reached the end of this hall.
+# 
+# Turn back and try another path.
+#
+# Remember, to back track one directory, you type:
+#
+# cd ..
+#
+# If you are drawing a map of your progress,
+# you can always get the name of your working
+# directory with this command:
+# 
+# pwd
 

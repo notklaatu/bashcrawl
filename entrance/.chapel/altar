@@ -11,34 +11,31 @@
 # When you're ready to continue playing the game, though, stick to
 # the scrolls. If you're stuck, go to Gitlab and create an issue.
 # We're happy to provide hints.
-# 
-echo "A rugged statue stands in the corner of the room."
-echo "Do you approach it?"
+#
+echo "In the corner is a decaying old altar of some forgotten god."
+printf "\n"
+echo "There is a small trinket on the ground."
+echo "It looks religious in nature."
+echo "Do you want to put the trinket back on the altar?"
+printf "\n"
 read RESP
 
 if [ $RESP = "y" -o $RESP = "Y" ]; then
-   echo "The statue springs to life, rumbling:"
-   echo "WHO DARES INTRUDE UPON CHAMBER OF SPIRITS?"
-   printf "\n" 
-   echo "It thrusts a fist at you, hitting you for 5 damage."
-   echo "Deduct 5 from your HP variable:"
-   echo 'let "HP=HP-5"'
-   sed -i 's/coins/diamonds/g' ./treasure
-   printf "\n"
-   echo "Do you have a sword?"
+   echo "You place the trinket upon the altar."
+   echo "You feel a gentle breeze pass through the room."
+   touch .bless
+else
+   echo "Do you want to take the trinket for yourself?"
    read RESP
    if [ $RESP = "y" -o $RESP = "Y" ]; then
-       echo "You slay the statue!"
+       echo "Remember to add the trinket to your inventory!"
+       touch .curse
    else
-       echo "Run!"
-       rm treasure
-       rm spell
+   echo "You leave the trinket where it lies."
+   echo "There is a great sadness here."
+   echo "You feel compelled to move on."
+   touch .curse
    fi
-else
-    echo "You cautiously avoid the statue,"
-    echo "recalling stories of living stone"
-    echo "lying in wait, deep within haunted catacombs."
-   printf "\n"
 fi
 
 
@@ -314,37 +311,16 @@ fi
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Hmm, that didn't work.
+#
 # Remember, when files end in a * 
 # it means they are applications.
 # Try this:
 #
-# ./statue
+# ./altar
+#
+# If you're not seeing the * after
+# this file name, you're probably
+# forgetting to use ls -F 
+
 

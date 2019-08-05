@@ -11,7 +11,7 @@
 # When you're ready to continue playing the game, though, stick to
 # the scrolls. If you're stuck, go to Gitlab and create an issue.
 # We're happy to provide hints.
-# 
+#
 roll() {
     echo "Enter a number."
     read NUM
@@ -24,23 +24,12 @@ roll() {
     MONSTER=`echo $MONSTER | cut -b 1-2`
     NUM=`echo $NUM | cut -b 1-2`
 
-    let "MONSTER=MONSTER+3"
-    
-    if [ ! -e drum ]; then
-       let "MONSTER=MONSTER-2"
-    fi
-    
     echo "The monster rolled " $MONSTER
     echo "You rolled " $NUM
-
-    if [[ -e wizard-dark && -e wizard-light ]]; then
+    
+    if [ -e ../../../glass/.bless ]; then
 	let "NUM=NUM+2"
-	echo "+2 Arnnisen the Gray"
-    fi
-
-if [[ -e ../../.bless ]]; then
-	let "NUM=NUM+2"
-	echo "+2 POSIX wizard bonus!"
+	echo "+2 bonus from a mysterious wintry patron!"
     fi
     resolve
 }
@@ -54,45 +43,38 @@ resolve() {
     
     if [[ $MONSTER -lt $NUM ]]; then
        echo "A hit! A palpable hit!"
-       echo "You have vanquished the elder god of chaos!"
-       echo "\#\!/bin/sh" > treasure
-       echo "echo 'You have found a lock of the **hair** of a god!'" > treasure
+       echo "You have slain the spirit of the evil wizard."
+       echo "echo 'You have found an *emerald*!'" > treasure
        echo "echo 'Add it to your inventory.'" >> treasure
        chmod +x treasure
-       echo "\#\!/bin/sh" > platinum
-       echo 'You have found an enchanted *bracelet* of chaotic necromancy!'" >> platinum
-       echo " You have reached the end of the game." > end
-       echo " You know enough Bash now to use it for every day activities." >> end
-       echo " Practice makes perfect, so be sure to use it often. " >> end
-       echo " For continued Bash tips, visit opensource.com often." >> end
-       echo " And eventually, we hope to see you contribute " >> end
-       echo " your own dungeon rooms to Bash crawl\!" >> end
-
+       echo "echo 'You have found a sack full of *platinum* coins!'" > platinum
        echo "echo 'Add it to your inventory.'" >> platinum
        chmod +x platinum
     else
 	echo "Your sword swings harmlessly through the air."
-	echo "You take 10 points damage from your foe. Deduct this from your HP."
-	echo 'let "HP=HP-10"'
+	echo "You take 5 points damage. Deduct this from your HP variable:"
+	echo 'let "HP=HP-5"'
 	printf "\n"
 	roll
     fi
 }
 
-echo "In the blink of an eye, Nyarlathotep is standing before you."
-echo "From its hands emanate black necrotic rays, and your mind screams."
+echo "The room shakes, a gust of wind blasts you from nowhere."
+echo "You sense that a presence has entered the room."
+echo "The pain you suddenly feel assures you that you are under attack by a ghostly entity!"
 printf "\n"
-echo "Are you armed? y/n"
+
+echo "If you have a sword, you can attack."
+echo "Otherwise, you should run."
+echo "Do you want to attack? y/n"
 read RESP
 
 if [ $RESP = "y" -o $RESP = "Y" ];then
     roll
     resolve
 else
-    echo "You turn to flee but find that you cannot."
-    echo "You spend 1000 years as a mindless servant to the crawling chaos."
-    echo "When you awaken, you may attempt to fight for your liberation."
-    printf "\n"
+    echo "You wisely turn and flee."
+    echo "Quickly cd to the previous directory."
 fi
 printf "\n"
 
@@ -370,14 +352,9 @@ printf "\n"
 
 
 # Hmm, that didn't work.
-#
 # Remember, when files end in a * 
 # it means they are applications.
 # Try this:
 #
-# ./nyarlathotep
-#
-# If you're not seeing the * after
-# this file name, you're probably
-# forgetting to use ls -F 
+# ./ghost
 

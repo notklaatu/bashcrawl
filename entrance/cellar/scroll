@@ -1,14 +1,14 @@
 
-Illusions are strong here.
-It is difficult to tell what is a doorway and what is an object.
-
-The magic spell you use to look can be augmented.
-
-From now on, cast your spell like this:
-
-$ ls -F
-
-Directories (the rooms of these catacombs) end with a / symbol.
-
-Encounters (programs) end with a * symbol.
+# Illusions are strong here.
+# It is difficult to tell what is a doorway and what is an object.
+#
+# The magic spell you use to look can be augmented.
+#
+# From now on, cast your spell like this:
+# 
+# ls -F
+# 
+# Directories (the rooms of these catacombs) end with a / symbol.
+# 
+# Encounters (programs) end with a * symbol.
 

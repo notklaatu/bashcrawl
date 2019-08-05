@@ -1,16 +1,18 @@
 
-You can interact with items in the room (they end with a *) by running them as a shell script.
-
-For example, to collect treasure:
-
-$ ./treasure
-
-The . means *don't move*, and the name of the script makes the code run.
-
-You have left treasure in the previous room.
-Go back to a previous directory with two dots, which means *take a step back*.
-
-EXAMPLE:
-
-$ cd ..
+# You can interact with items in the room (they end with a *)
+# by running them as a shell script.
+#
+# For example, to collect treasure:
+#
+# ./treasure
+# 
+# The . means *don't move*, and the name of the script makes the code run.
+# 
+# You have left treasure in the previous room.
+# Go back to a previous directory with two dots,
+# which means *take a step back*.
+#
+# EXAMPLE:
+#
+# cd ..
 

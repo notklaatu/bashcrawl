@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # If you are reading this, you have wandered out of bounds
 # and are reading the code that drives the game.
@@ -11,62 +11,27 @@
 # When you're ready to continue playing the game, though, stick to
 # the scrolls. If you're stuck, go to Gitlab and create an issue.
 # We're happy to provide hints.
-# 
-echo "A rugged statue stands in the corner of the room."
-echo "Do you approach it?"
-read RESP
-
-if [ $RESP = "y" -o $RESP = "Y" ]; then
-   echo "The statue springs to life, rumbling:"
-   echo "WHO DARES INTRUDE UPON CHAMBER OF SPIRITS?"
-   printf "\n" 
-   echo "It thrusts a fist at you, hitting you for 5 damage."
-   echo "Deduct 5 from your HP variable:"
-   echo 'let "HP=HP-5"'
-   sed -i 's/coins/diamonds/g' ./treasure
-   printf "\n"
-   echo "Do you have a sword?"
-   read RESP
-   if [ $RESP = "y" -o $RESP = "Y" ]; then
-       echo "You slay the statue!"
-   else
-       echo "Run!"
-       rm treasure
-       rm spell
-   fi
+#
+if [[ -e potion ]]; then
+   echo "You have summoned a potion from afar."
+   echo "You drink it quickly and feel a surge of strength."
+   echo "Add 5 HP to your score."
 else
-    echo "You cautiously avoid the statue,"
-    echo "recalling stories of living stone"
-    echo "lying in wait, deep within haunted catacombs."
+   echo "A page from a druid's tome of incantations lies on the ground."
+   echo "It reveals to you how to summon a healing potion:"
+   printf "\n"
+   echo "# To find a file on your system, use the find command."
+   echo '# For example, to search this room: find . -name "potion"'
+   echo "# Once you've found a potion, copy it to this directory"
+   echo "# and run this spell script again."
+   printf "\n"
+   echo "There are no potions in this room."
+   echo "But try searching starting at the entrance."
+   printf "\n"
+   echo "Hint: use pwd to determine how many rooms (folders)"
+   echo "are between you and the entrance."
    printf "\n"
 fi
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -346,5 +311,5 @@ fi
 # it means they are applications.
 # Try this:
 #
-# ./statue
+# ./spell
 

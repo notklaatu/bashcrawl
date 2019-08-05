@@ -12,33 +12,19 @@
 # the scrolls. If you're stuck, go to Gitlab and create an issue.
 # We're happy to provide hints.
 # 
-echo "A rugged statue stands in the corner of the room."
-echo "Do you approach it?"
+echo "Do you have an ice crystal?"
+printf "\n"
 read RESP
 
 if [ $RESP = "y" -o $RESP = "Y" ]; then
-   echo "The statue springs to life, rumbling:"
-   echo "WHO DARES INTRUDE UPON CHAMBER OF SPIRITS?"
-   printf "\n" 
-   echo "It thrusts a fist at you, hitting you for 5 damage."
-   echo "Deduct 5 from your HP variable:"
-   echo 'let "HP=HP-5"'
-   sed -i 's/coins/diamonds/g' ./treasure
-   printf "\n"
-   echo "Do you have a sword?"
-   read RESP
-   if [ $RESP = "y" -o $RESP = "Y" ]; then
-       echo "You slay the statue!"
-   else
-       echo "Run!"
-       rm treasure
-       rm spell
-   fi
+   echo "You place the ice crystal among the shards of glass."
+   echo "The sword in your hands becomes cold."
+   echo "You feel the power of 1000 blizzards coursing through it."
+   touch .bless
 else
-    echo "You cautiously avoid the statue,"
-    echo "recalling stories of living stone"
-    echo "lying in wait, deep within haunted catacombs."
-   printf "\n"
+   echo "You sense that the glass shards are searching for something."
+   echo "Whatever it is, you cannot provide it now."
+   echo "Walk with care."
 fi
 
 
@@ -314,37 +300,12 @@ fi
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Hmm, that didn't work.
+
 # Remember, when files end in a * 
 # it means they are applications.
 # Try this:
 #
-# ./statue
+# ./glass
+
 

@@ -1,5 +1,6 @@
 #!/bin/bash
 #
+#
 # If you are reading this, you have wandered out of bounds
 # and are reading the code that drives the game.
 #
@@ -12,61 +13,37 @@
 # the scrolls. If you're stuck, go to Gitlab and create an issue.
 # We're happy to provide hints.
 # 
-echo "A rugged statue stands in the corner of the room."
-echo "Do you approach it?"
+if [[ -e goblet-light && -e goblet-dark ]]; then
+   echo "You have united the gobllet's ethereal forms."
+   echo "Add the goblet to your inventory."
+   exit
+else 
+    echo "You try to grasp the faintly glowing goblet,"
+    echo "but it passes through your fingers."
+fi
+
+printf "\n"
+echo "Are you stuck? Do you need a hint? y/n"
 read RESP
 
 if [ $RESP = "y" -o $RESP = "Y" ]; then
-   echo "The statue springs to life, rumbling:"
-   echo "WHO DARES INTRUDE UPON CHAMBER OF SPIRITS?"
-   printf "\n" 
-   echo "It thrusts a fist at you, hitting you for 5 damage."
-   echo "Deduct 5 from your HP variable:"
-   echo 'let "HP=HP-5"'
-   sed -i 's/coins/diamonds/g' ./treasure
-   printf "\n"
-   echo "Do you have a sword?"
-   read RESP
-   if [ $RESP = "y" -o $RESP = "Y" ]; then
-       echo "You slay the statue!"
-   else
-       echo "Run!"
-       rm treasure
-       rm spell
-   fi
-else
-    echo "You cautiously avoid the statue,"
-    echo "recalling stories of living stone"
-    echo "lying in wait, deep within haunted catacombs."
-   printf "\n"
+ echo "Try searching opensource.com for"
+ echo "hints on how to copy files."
+ printf "\n"
+ echo "Still stuck? Do you need the answer? y/n"
+ read RESP
+
+ if [ $RESP = "y" -o $RESP = "Y" ]; then
+     echo "The cp command copies one file to another."
+     echo "Run this command:"
+     echo "$ cp goblet-light goblet-dark"
+     printf "\n"
+     echo "And then run this goblet script again"
+     echo "for confirmation."
+ fi
 fi
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+printf "\n"
 
 
 
@@ -346,5 +323,5 @@ fi
 # it means they are applications.
 # Try this:
 #
-# ./statue
+# ./goblet
 
