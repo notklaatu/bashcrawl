@@ -24,7 +24,7 @@ echo "$ export I=coins,\$I"
 printf "\n"
 echo "Remember, you can check your inventory:"
 printf "\n"
-echo "echo $I"
+echo "echo \$I"
 printf "\n"
 
 
