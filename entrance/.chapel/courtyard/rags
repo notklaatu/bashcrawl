@@ -23,14 +23,16 @@ if [ $RESP = "y" -o $RESP = "Y" ];then
     echo "As you take the rags from the floor, you find"
     echo "a salted fish, probably from the rations of"
     echo "the former owner of these rags."
-echo "Prepend these item to your inventory:"
-printf "\n"
-echo "$ export I=rags,fish,\$I"
-printf "\n"
-echo "Remember, you can check your inventory:"
-printf "\n"
-echo "echo \$I"
-printf "\n"
+    echo "Prepend these item to your inventory:"
+    printf "\n"
+    echo "$ export I=rags,fish,\$I"
+    printf "\n"
+    echo "Remember, you can check your inventory:"
+    printf "\n"
+    echo "echo \$I"
+    printf "\n"
+fi
+
 #
 #
 #
