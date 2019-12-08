@@ -55,12 +55,12 @@ resolve() {
     if [[ $MONSTER -lt $NUM ]]; then
        echo "A hit! A palpable hit!"
        echo "You have vanquished the elder god of chaos!"
-       echo "\#\!/bin/sh" > treasure
-       echo "echo 'You have found a lock of the **hair** of a god!'" > treasure
+       echo "#\!/bin/sh" > treasure
+       echo "echo 'You have found a lock of the **hair** of a god!'" >> treasure
        echo "echo 'Add it to your inventory.'" >> treasure
        chmod +x treasure
-       echo "\#\!/bin/sh" > platinum
-       echo 'You have found an enchanted *bracelet* of chaotic necromancy!'" >> platinum
+       echo "#\!/bin/sh" > platinum
+       echo "echo 'You have found an enchanted *bracelet* of chaotic necromancy!'" >> platinum
        echo " You have reached the end of the game." > end
        echo " You know enough Bash now to use it for every day activities." >> end
        echo " Practice makes perfect, so be sure to use it often. " >> end
@@ -87,7 +87,6 @@ read RESP
 
 if [ $RESP = "y" -o $RESP = "Y" ];then
     roll
-    resolve
 else
     echo "You turn to flee but find that you cannot."
     echo "You spend 1000 years as a mindless servant to the crawling chaos."
