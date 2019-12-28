@@ -60,6 +60,10 @@ gameover () {
         dirs -c
         curr=`basename $PWD`
     done
+    echo "You see the corpse of a slain adventurer on the floor of the dungeon." > corpse
+    echo "You find the following items on the corpse:  " >> corpse
+    echo >> corpse
+    echo $I >> corpse
     unset I
     unset HP
     $SHELL
