@@ -12,6 +12,59 @@
 # the scrolls. If you're stuck, go to Gitlab and create an issue.
 # We're happy to provide hints.
 #
+
+
+gameover () {
+    curr=`basename $PWD`
+    while [ "$curr" != "entrance" ]; do
+        pushd .. &> /dev/null
+        dirs -c
+        curr=`basename $PWD`
+    done
+    unset I
+    unset HP
+    $SHELL
+}
+
+penguin_bite () {
+	echo "The penguin gnaws at your Bag of Holding, hoping for a morsel."
+	echo "Finding nothing, it takes a nip at your hand"
+	echo 'for 1 point of damage. (HP="let HP--").'
+	echo "You may avoid this damage if you have a sword"
+	echo "and wish to attack the penguin."
+	printf "\n"
+	echo "Do you want to attack the penguin?"
+	read RESP
+	if [ $RESP = "y" -o $RESP = "Y" ]; then
+	    echo "You attack the penguin, quickly doing away with it with one quick slash."
+	    echo "This draws the attention of the other penguins in the room."
+	    echo "They band together and rush at you. You fight your best."
+        let HP=HP-5
+        export HP
+        if [ "$HP" -le 0 ]; then
+            echo "The mob of penguins reduces your hit points to zero."
+            echo "You are slain by the mob."
+            gameover
+            exit 1
+        else
+	        echo "But a mob of penguins does not tolerate oppression, and you soon find yourself sealed in a block of ice."
+	        echo "There you stay, perfectly preserved for 128 years. When you are thawed, you may continue your adventure."
+        fi
+	else
+        let HP=HP--
+        export HP
+	    echo "You keep things in perspective, and do not lash out at the penguin."
+	fi
+}
+
+notch () {
+    local list=$1
+    shift
+    local item=$1
+
+    return `sed -e "s/\b${item}\b//g; s/,,//g" <<< $list`
+
+}
 echo "One of the birds finally notices your presence."
 echo "It turns its head sideways, seemingly beckoning"
 echo "for you to come closer."
@@ -25,33 +78,24 @@ if [ $RESP = "y" -o $RESP = "Y" ]; then
    echo "Do you happen to have a fish?"
    read RESP
 
-if [ $RESP = "y" -o $RESP = "Y" ]; then
-      echo "You toss the fish at the penguin,"
-      echo "which catches the fish mid-air and"
-      echo "gobbles it down."
+    if [ $RESP = "y" -o $RESP = "Y" ]; then
+        if grep -Po fish <<< $I; then
+            echo "You toss the fish at the penguin,"
+            echo "which catches the fish mid-air and"
+            echo "gobbles it down."
+            I=`notch $I "fish"`
+        else
+            echo "You don't have a fish!"
+            echo
+            penguin_bite
+        fi
    else
-	echo "The penguin gnaws at your Bag of Holding, hoping for a morsel."
-	echo "Finding nothing, it takes a nip at your hand"
-	echo 'for 1 point of damage. (HP="let HP--").'
-	echo "You may avoid this damage if you have a sword"
-	echo "and wish to attack the penguin."
-	printf "\n"
-	echo "Do you want to attack the penguin?"
-	read RESP
-	if [ $RESP = "y" -o $RESP = "Y" ]; then
-	    echo "You attack the penguin, quickly doing away with it with one quick slash."
-	    echo "This draws the attention of the other penguins in the room."
-	    echo "They band together and rush at you. You fight your best."
-	    echo "But a mob of penguins does not tolerate oppression, and you soon find yourself sealed in a block of ice."
-	    echo "There you stay, perfectly preserved for 128 years. When you are thawed, you may continue your adventure."
-	else
-	    echo "You keep things in perspective, and do not lash out at the penguin."
-	fi
+        penguin_bite
    fi
    
-   else
-	echo "You back away from the penguin carefully."
-	echo "It loses interest in you and waddles away."
+else
+   echo "You back away from the penguin carefully."
+   echo "It loses interest in you and waddles away."
 fi
 #
 #
