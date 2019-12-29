@@ -12,22 +12,27 @@
 # the scrolls. If you're stuck, go to Gitlab and create an issue.
 # We're happy to provide hints.
 #
-printf "\n"
-echo "You have found an emerald **amulet**!"
-printf "\n"
-echo "To collect treasure, you must have a variable to hold your inventory."
-printf "\n"
-echo "Create a variable and add your treasure to it like this:"
-printf "\n"
-echo "export I=amulet,\$I"
-printf "\n"
-echo "You can always check your wealth with this command:"
-printf "\n"
-echo "echo \$I"
-printf "\n"
-mv ../.chapel ../chapel 2>/dev/null
-mv ../.vault ../vault 2>/dev/null
-mv ../.scrap ../scrap 2>/dev/null
+
+if ! grep -Po amulet <<< $I &> /dev/null; then
+    printf "\n"
+    echo "You have found an emerald **amulet**!"
+    printf "\n"
+    echo "To collect treasure, you must have a variable to hold your inventory."
+    printf "\n"
+    echo "Create a variable and add your treasure to it like this:"
+    printf "\n"
+    echo "export I=amulet,\$I"
+    printf "\n"
+    echo "You can always check your wealth with this command:"
+    printf "\n"
+    echo "echo \$I"
+    printf "\n"
+    mv ../.chapel ../chapel 2>/dev/null
+    mv ../.vault ../vault 2>/dev/null
+    mv ../.scrap ../scrap 2>/dev/null
+else
+    echo "This treasure has already been taken."
+fi
 
 
 
