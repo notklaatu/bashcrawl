@@ -60,7 +60,7 @@ resolve() {
        echo "A hit! A palpable hit!"
        echo "You have slain the beast."
        echo '#!/bin/sh
-             if grep -Po crown <<< $I &> /dev/null; then
+             if ! grep -Po crown <<< $I &> /dev/null; then
                  echo "You have found a *crown*!" 
                  echo "Add it to your inventory."
              else

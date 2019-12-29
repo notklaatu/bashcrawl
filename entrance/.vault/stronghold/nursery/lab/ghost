@@ -61,7 +61,7 @@ resolve() {
        echo "You have slain the spirit of the evil wizard."
        echo '#!/bin/sh
             if ! grep -Po emerald <<< $I &> /dev/null; then
-                echo "You have found an *emerald*!
+                echo "You have found an *emerald*!"
                 echo "Add it to your inventory."
             else
                 echo "This treasure has already been taken."
