@@ -61,14 +61,6 @@ penguin_bite () {
 	fi
 }
 
-notch () {
-    local list=$1
-    shift
-    local item=$1
-
-    return `sed -e "s/\b${item}\b//g; s/,,//g" <<< $list`
-
-}
 echo "One of the birds finally notices your presence."
 echo "It turns its head sideways, seemingly beckoning"
 echo "for you to come closer."
@@ -87,7 +79,11 @@ if [ $RESP = "y" -o $RESP = "Y" ]; then
             echo "You toss the fish at the penguin,"
             echo "which catches the fish mid-air and"
             echo "gobbles it down."
-            I=`notch $I "fish"`
+            echo
+            echo "Don't forget to remove the fish from your inventory."
+            echo "Try the following command:"
+            echo 
+            echo 'export I=`sed "s/fish//; s/,,/,/" <<< $I`'
         else
             echo "You don't have a fish!"
             echo

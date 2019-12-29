@@ -12,6 +12,21 @@
 # the scrolls. If you're stuck, go to Gitlab and create an issue.
 # We're happy to provide hints.
 #
+gameover () {
+    curr=`basename $PWD`
+    while [ "$curr" != "entrance" ]; do
+        pushd .. &> /dev/null
+        dirs -c
+        curr=`basename $PWD`
+    done
+    echo "You see the corpse of a slain adventurer on the floor of the dungeon." > corpse
+    echo "You find the following items on the corpse:  " >> corpse
+    echo >> corpse
+    echo $I >> corpse
+    unset I
+    unset HP
+    $SHELL
+}
 roll() {
     echo "Enter a number."
     read NUM
@@ -44,16 +59,35 @@ resolve() {
     if [[ $MONSTER -lt $NUM ]]; then
        echo "A hit! A palpable hit!"
        echo "You have slain the spirit of the evil wizard."
-       echo "echo 'You have found an *emerald*!'" > treasure
-       echo "echo 'Add it to your inventory.'" >> treasure
+       echo '#!/bin/sh
+            if ! grep -Po emerald <<< $I &> /dev/null; then
+                echo "You have found an *emerald*!
+                echo "Add it to your inventory."
+            else
+                echo "This treasure has already been taken."
+            fi' > treasure
        chmod +x treasure
-       echo "echo 'You have found a sack full of *platinum* coins!'" > platinum
-       echo "echo 'Add it to your inventory.'" >> platinum
+       echo '#!/bin/sh
+             if ! grep -Po platinum <<< $I &> /dev/null; then
+                 echo "You have found a sack full of *platinum* coins!"
+                 echo "Add it to your inventory." 
+             else
+                 echo "This treasure has already been taken."
+             fi' > platinum
        chmod +x platinum
     else
 	echo "Your sword swings harmlessly through the air."
 	echo "You take 5 points damage. Deduct this from your HP variable:"
 	echo 'let "HP=HP-5"'
+    let HP=HP-5
+    if [ "$HP" -le 0 ]; then
+        echo "You suddenly feel cold, the life force draining from your body."
+        echo "You have been slain by the ghost of an evil wizard."
+        echo
+        echo "GAME OVER!"
+        gameover
+        exit 1
+    fi
 	printf "\n"
 	roll
     fi

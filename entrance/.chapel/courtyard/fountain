@@ -31,7 +31,7 @@ printf "\n"
 read RESP
 
 if [ $RESP = "y" -o $RESP = "Y" ]; then
-   echo "The waters sparkle in the light of you gaze."
+   echo "The waters sparkle in the light of your gaze."
    echo "You feel drawn to it."
    if [ x$CURSE = "x" ]; then
        echo "But you suddenly feel strength to turn away."
@@ -44,7 +44,7 @@ else
 	damage
     fi
 fi
-rm ../.curse
+[ -f ../.curse ] && rm ../.curse
 #
 #
 #

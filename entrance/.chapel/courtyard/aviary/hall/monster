@@ -59,8 +59,13 @@ resolve() {
     if [[ $MONSTER -lt $NUM ]]; then
        echo "A hit! A palpable hit!"
        echo "You have slain the beast."
-       echo "echo 'You have found a *crown*!'" > treasure
-       echo "echo 'Add it to your inventory.'" >> treasure
+       echo '#!/bin/sh
+             if grep -Po crown <<< $I &> /dev/null; then
+                 echo "You have found a *crown*!" 
+                 echo "Add it to your inventory."
+             else
+                 echo "This treasure has already been taken."
+            fi' > treasure
        chmod +x treasure
        mv monster carcass
     else
