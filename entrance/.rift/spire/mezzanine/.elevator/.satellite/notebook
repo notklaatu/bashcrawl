@@ -1,0 +1,37 @@
+This is the notebook of Thraal, 
+Artificer of the Kingdom of Nor.  I have 
+been studying the machines that lie in 
+this Satellite.  I have a way to combine 
+the parts to form a golem, a *robot*, 
+using the same incantation that I use to 
+view signs and scrolls in my home world.  
+I have discovered that in order to bring 
+the robot to life I must utter the 
+following spell:
+
+
+chmod +x robot
+
+I have labeled the four parts alpha, 
+beta, gamma, delta, but that is not the 
+order I must combine them.  I must pass 
+the combined parts into another spell 
+which I will document below.  The first 
+incantation I tried was thus:
+
+cat alpha beta gamma delta | base64 -d > robot
+
+...but that was met with the following error:  
+
+base64:  invalid input
+
+I will attempt every combination and 
+document the one that succeeds.  I
+
+alpha beta delta gamma 
+alpha delta bet
+
+There appears to be dried blood on the 
+notebook, and the rest of the pages are 
+blank.
+

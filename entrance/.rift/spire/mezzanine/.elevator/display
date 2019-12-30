@@ -1,0 +1,502 @@
+#!/bin/sh
+#
+# If you are reading this, you have wandered out of bounds
+# and are reading the code that drives the game.
+#
+#                    Congratulations!
+#
+# Learning Linux is all about curiosity, so read this code and see
+# if you can figure out what it does.
+#
+# When you're ready to continue playing the game, though, stick to
+# the scrolls. If you're stuck, go to Gitlab and create an issue.
+# We're happy to provide hints.
+# 
+
+floors=666
+countdown () {
+	var=${floors}
+	len=${#var} 
+	echo -n $var
+    let m=var-1
+	for t in `seq ${m} -1 1`
+	do
+		sleep 0.1
+		for i in `seq ${len} -1 1`
+		do
+			echo -ne '\b'
+		done
+		if [ $len -gt ${#t} ]
+		then
+            let l=len-1
+			for n in `seq ${l} -1 ${#t}`
+			do
+				echo -n '0'
+			done
+		fi
+		echo -n $t
+	done
+}
+
+
+countup () {
+	var=${floors}
+	for t in `seq 1 ${var}`
+	do
+		sleep 0.1
+        len=${#t}
+		for i in `seq 1 ${#var}`
+		do
+			echo -ne '\b'
+		done
+        if [ ${len} -lt ${#var} ]; then
+            let n=${#var}-len
+            for j in `seq 1 ${n}`
+            do
+                echo -ne '0'
+            done
+        fi
+        echo -n $t
+	done
+}
+
+if grep UP .direction &> /dev/null; then
+    echo "You hear a slight whirring, and feel"
+    echo "a heaviness at your feet, with a vague,"
+    echo "disquieting sense of motion."
+    echo
+    echo "A magickal display reads:  "
+    echo
+    countup
+    echo
+    echo
+    echo "The doors slide open, with nothing but"
+    echo "darkness beyond."
+    echo "DOWN" > .direction
+    ln -sf .satellite door && \
+        sleep 10 && \
+        echo "The doors slide closed." && \
+        rm door &> /dev/null && \
+        echo "DOWN" > .direction &
+        echo
+    else
+        echo "You hear a slight whirring, and feel"
+        echo "a lightness at your feet, with a vague,"
+        echo "disquieting sense of motion."
+        echo
+        echo "A magickal display reads:  "
+        echo
+        countdown
+        echo
+        echo
+        echo "UP" > .direction &
+        echo "The doors slide open, with nothing but"
+        echo "darkness beyond."
+            sleep 10 && \
+            ln -sf .. door && \
+            echo "The doors slide closed." && \
+            rm door &> /dev/null &
+        echo
+    fi
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# Remember, when files end in a * 
+# it means they are applications.
+# Try this:
+#
+# ./box
+#
+# If you're not seeing the * after
+# this file name, you're probably
+# forgetting to use ls -F 
+
