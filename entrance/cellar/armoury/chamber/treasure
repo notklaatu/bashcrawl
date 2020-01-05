@@ -12,20 +12,25 @@
 # the scrolls. If you're stuck, go to Gitlab and create an issue.
 # We're happy to provide hints.
 # 
-printf "\n"
-echo "You have found a stash of **coins**!"
-echo "They are old and worn with age,"
-echo "but they still gleam in the magical light"
-echo "emanating from your eyes."
-printf "\n"
-echo "Prepend this item to your inventory:"
-printf "\n"
-echo "$ export I=coins,\$I"
-printf "\n"
-echo "Remember, you can check your inventory:"
-printf "\n"
-echo "echo \$I"
-printf "\n"
+echo
+if ! grep -Po coins <<< $I &> /dev/null; then
+    echo "You have found a stash of **coins**!"
+    echo "They are old and worn with age,"
+    echo "but they still gleam in the magical light"
+    echo "emanating from your eyes."
+    printf "\n"
+    echo "Prepend this item to your inventory:"
+    printf "\n"
+    echo '$ export I=coins,$I'
+    printf "\n"
+    echo "Remember, you can check your inventory:"
+    printf "\n"
+    echo 'echo $I'
+    printf "\n"
+else
+    echo "This treasure has already been taken."
+fi
+
 
 
 

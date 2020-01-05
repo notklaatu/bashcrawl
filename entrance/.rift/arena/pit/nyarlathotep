@@ -45,6 +45,29 @@ if [[ -e ../../.bless ]]; then
     resolve
 }
 
+gameover () {
+    echo "You see the corpse of a slain adventurer on the floor of the dungeon." > corpse
+    echo "You find the following items on the corpse:  " >> corpse
+    echo >> corpse
+    echo $I >> corpse
+    curr=`basename $PWD`
+    while [ "$curr" != "entrance" ]; do
+        pushd .. &> /dev/null
+        dirs -c
+        curr=`basename $PWD`
+    done
+    unset I
+    unset HP
+    $SHELL
+}
+
+flee () {
+    echo "You turn to flee but find that you cannot."
+    echo "You spend 1000 years as a mindless servant to the crawling chaos."
+    echo "When you awaken, you may attempt to fight for your liberation."
+    printf "\n"
+
+}
 resolve() {
     if [[ $MONSTER -eq $NUM ]]; then
 	echo "You dodge an attack, but you miss your mark as a result."
@@ -55,27 +78,49 @@ resolve() {
     if [[ $MONSTER -lt $NUM ]]; then
        echo "A hit! A palpable hit!"
        echo "You have vanquished the elder god of chaos!"
-       echo "#\!/bin/sh" > treasure
-       echo "echo 'You have found a lock of the **hair** of a god!'" >> treasure
-       echo "echo 'Add it to your inventory.'" >> treasure
-       chmod +x treasure
-       echo "#\!/bin/sh" > platinum
-       echo "echo 'You have found an enchanted *bracelet* of chaotic necromancy!'" >> platinum
-       echo " You have reached the end of the game." > end
-       echo " You know enough Bash now to use it for every day activities." >> end
-       echo " Practice makes perfect, so be sure to use it often. " >> end
-       echo " For continued Bash tips, visit opensource.com often." >> end
-       echo " And eventually, we hope to see you contribute " >> end
-       echo " your own dungeon rooms to Bash crawl\!" >> end
 
-       echo "echo 'Add it to your inventory.'" >> platinum
-       chmod +x platinum
+       echo '#!/bin/sh
+       if ! grep -Po hair <<< $I &> /dev/null; then
+           echo "You have found a lock of the **hair** of a god!"
+           echo "Add it to your inventory."
+       else 
+           echo "This treasure has already been taken."
+       fi' > treasure
+       chmod +x treasure
+       echo '#!/bin/sh
+       if ! grep -Po bracelet <<< $I &> /dev/null; then
+           echo "You have found an enchanted *bracelet* of chaotic necromancy!"
+           echo "Add it to your inventory." 
+       else
+           echo "This treasure has already been taken."
+       fi' > platinum
+    chmod +x platinum
+       cat << EOF > end 
+You have reached the end of the game. 
+You know enough Bash now to use it for every day activities.
+Practice makes perfect, so be sure to use it often.
+For continued Bash tips, visit opensource.com often.
+And eventually, we hope to see you contribute
+your own dungeon rooms to Bash crawl!
+EOF
+
     else
-	echo "Your sword swings harmlessly through the air."
-	echo "You take 10 points damage from your foe. Deduct this from your HP."
-	echo 'let "HP=HP-10"'
-	printf "\n"
-	roll
+    	echo "Your sword swings harmlessly through the air."
+    	echo "You take 10 points damage from your foe. Deduct this from your HP."
+    	echo 'let "HP=HP-10"'
+        let HP=HP-10
+        export HP
+        if [ "$HP" -le 0 ]; then
+            echo "The elder god of chaos consumes your body and soul."
+            echo
+            echo "You have been slain."
+            echo
+            echo "GAME OVER!"
+            gameover
+            exit 1
+        fi
+	    printf "\n"
+	    roll
     fi
 }
 
@@ -86,12 +131,17 @@ echo "Are you armed? y/n"
 read RESP
 
 if [ $RESP = "y" -o $RESP = "Y" ];then
-    roll
+
+    if grep -Po "sword" <<< $I &> /dev/null; then
+        roll
+    else
+        echo "Oh, no!  You have lost your blade!"
+        echo "Nyarlathotep, the elder god of chaos, senses your weakness."
+        echo
+        flee
+    fi
 else
-    echo "You turn to flee but find that you cannot."
-    echo "You spend 1000 years as a mindless servant to the crawling chaos."
-    echo "When you awaken, you may attempt to fight for your liberation."
-    printf "\n"
+    flee
 fi
 printf "\n"
 

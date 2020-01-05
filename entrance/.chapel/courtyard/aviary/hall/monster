@@ -12,6 +12,21 @@
 # the scrolls. If you're stuck, go to Gitlab and create an issue.
 # We're happy to provide hints.
 #
+gameover () {
+    echo "You see the corpse of a slain adventurer on the floor of the dungeon." > corpse
+    echo "You find the following items on the corpse:  " >> corpse
+    echo >> corpse
+    echo $I >> corpse
+    curr=`basename $PWD`
+    while [ "$curr" != "entrance" ]; do
+        pushd .. &> /dev/null
+        dirs -c
+        curr=`basename $PWD`
+    done
+    unset I
+    unset HP
+    $SHELL
+}
 roll() {
     echo "Enter a number."
     read NUM
@@ -29,6 +44,12 @@ roll() {
 }
 
 resolve() {
+    if ! grep -Po 'sword' <<< $I &> /dev/null; then
+        echo "You do not have a sword!"
+        echo
+        echo "Your attacks will be less effective."
+        let NUM=NUM-10
+    fi
     if [[ $MONSTER -eq $NUM ]]; then
 	echo "You each parry one another's attacks."
 	echo "Roll again..."
@@ -38,17 +59,39 @@ resolve() {
     if [[ $MONSTER -lt $NUM ]]; then
        echo "A hit! A palpable hit!"
        echo "You have slain the beast."
-       echo "echo 'You have found a *crown*!'" > treasure
-       echo "echo 'Add it to your inventory.'" >> treasure
+       echo '#!/bin/sh
+             if ! grep -Po crown <<< $I &> /dev/null; then
+                 echo "You have found a *crown*!" 
+                 echo "Add it to your inventory."
+             else
+                 echo "This treasure has already been taken."
+            fi' > treasure
        chmod +x treasure
+       mv monster carcass
     else
-	echo "Your sword is deflected off the monster's leathery flesh."
+	echo "Your attack is deflected off the monster's leathery flesh."
 	echo "You take 5 points damage. Deduct this from your HP."
 	echo 'let "HP=HP-5"'
+    let HP=HP-5
+    export HP
+    if [ "$HP" -le 0 ]; then
+        echo "You have been slain by the monster."
+        echo 
+        echo "GAME OVER!"
+        gameover
+        exit 1
+    fi
 	printf "\n"
 	roll
     fi
 }
+
+if [ "$0" = "./carcass" ]; then
+    echo "You find the carcass of a foul beast."
+    echo 
+    echo "Nothing of interest lies within its remains."
+    exit 0
+fi
 
 echo "A hulking three-legged beast, with a mouth full of fangs"
 echo "and a barbed tail and 8 arms, lumbers toward you."
@@ -60,7 +103,6 @@ read RESP
 
 if [ $RESP = "y" -o $RESP = "Y" ];then
     roll
-    resolve
 else
     echo "You wisely turn and flee."
     echo "Quickly cd to the previous directory."
