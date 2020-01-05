@@ -27,14 +27,18 @@ if [ $RESP = "y" -o $RESP = "Y" ]; then
    echo "'--------------------------------'"
    read RESP
    if [ $RESP = $USER ]; then
-   echo "Welcome, $USER, to your POSIX system."
-   echo "You have learnt much, and now you have"
-   echo "the basic knowledge you need to become"
-   echo "a truly powerful wizard."
-   echo 'echo "You have found magickal armour.' > armour
-   echo 'echo "Add it to your inventory."' >> armour
-   echo 'touch .armour' >> armour
-   touch .bless
+      echo "Welcome, $USER, to your POSIX system."
+      echo "You have learnt much, and now you have"
+      echo "the basic knowledge you need to become"
+      echo "a truly powerful wizard."
+      echo 'echo "You have found magickal armour.' > armour
+      echo 'echo "Add it to your inventory."' >> armour
+      echo 'touch .armour' >> armour
+      touch .bless
+   else
+      echo "The magical box can sense your lie, and you feel"
+      echo "its disappointment as it remains shut."
+   fi
 else
    echo "The box is full of mystery, and it's often"
    echo "best not to look too deeply into puzzles."
