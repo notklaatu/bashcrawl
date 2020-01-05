@@ -40,11 +40,14 @@ if [ $RESP = "y" -o $RESP = "Y" ]; then
        damage
    fi
 else
-    if [ x$CURSE = "x" ]; then
+    if [ ! -z "$CURSE" ]; then
 	damage
     fi
 fi
-rm ../.curse
+
+if [ -f "../.curse" ]; then
+    rm ../.curse
+fi
 #
 #
 #
