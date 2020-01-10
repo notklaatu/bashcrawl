@@ -29,6 +29,7 @@ if [ $RESP = "y" -o $RESP = "Y" ]; then
         touch .bless
     else
         no_crystal
+    fi
 else
     no_crystal
 fi
