@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # If you are reading this, you have wandered out of bounds
 # and are reading the code that drives the game.
@@ -79,7 +79,7 @@ resolve() {
        echo "A hit! A palpable hit!"
        echo "You have vanquished the elder god of chaos!"
 
-       echo '#!/bin/sh
+       echo '#!/bin/bash
        if ! grep -Po hair <<< $I &> /dev/null; then
            echo "You have found a lock of the **hair** of a god!"
            echo "Add it to your inventory."
@@ -87,7 +87,7 @@ resolve() {
            echo "This treasure has already been taken."
        fi' > treasure
        chmod +x treasure
-       echo '#!/bin/sh
+       echo '#!/bin/bash
        if ! grep -Po bracelet <<< $I &> /dev/null; then
            echo "You have found an enchanted *bracelet* of chaotic necromancy!"
            echo "Add it to your inventory." 

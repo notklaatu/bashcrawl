@@ -59,7 +59,7 @@ resolve() {
     if [[ $MONSTER -lt $NUM ]]; then
        echo "A hit! A palpable hit!"
        echo "You have slain the spirit of the evil wizard."
-       echo '#!/bin/sh
+       echo '#!/bin/bash
             if ! grep -Po emerald <<< $I &> /dev/null; then
                 echo "You have found an *emerald*!"
                 echo "Add it to your inventory."
@@ -67,7 +67,7 @@ resolve() {
                 echo "This treasure has already been taken."
             fi' > treasure
        chmod +x treasure
-       echo '#!/bin/sh
+       echo '#!/bin/bash
              if ! grep -Po platinum <<< $I &> /dev/null; then
                  echo "You have found a sack full of *platinum* coins!"
                  echo "Add it to your inventory." 

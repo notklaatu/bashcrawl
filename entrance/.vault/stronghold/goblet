@@ -14,7 +14,7 @@
 # We're happy to provide hints.
 # 
 if [[ -e goblet-light && -e goblet-dark ]]; then
-   echo "You have united the gobllet's ethereal forms."
+   echo "You have united the goblet's ethereal forms."
    echo "Add the goblet to your inventory."
    exit
 else 

@@ -6,7 +6,7 @@
 #
 # I have done this, in the place of the singing flame:
 #
-# symlink --symbolic ../../../../.rift portal
+# ln -s ../../../../.rift portal
 #
 # [signed] Arnnisen the Gray
 
