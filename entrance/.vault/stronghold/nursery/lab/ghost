@@ -46,7 +46,6 @@ roll() {
 	let "NUM=NUM+2"
 	echo "+2 bonus from a mysterious wintry patron!"
     fi
-    resolve
 }
 
 resolve() {

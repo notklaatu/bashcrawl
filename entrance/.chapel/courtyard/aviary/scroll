@@ -13,6 +13,8 @@ directories by pressing the Tab key after typing the first
 few letters.
 
 When you move to the next room, try typing
-h
+
+cd h
+
 and then press TAB.
 

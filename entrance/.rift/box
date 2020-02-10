@@ -37,7 +37,9 @@ if [ $RESP = "y" -o $RESP = "Y" ]; then
        echo touch .armour' >> armour
        chmod +x armour
        touch .bless
-    fi
+
+       echo "You feel magic in the air."
+   fi
 else
    echo "The box is full of mystery, and it's often"
    echo "best not to look too deeply into puzzles."

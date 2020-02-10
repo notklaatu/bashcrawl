@@ -38,7 +38,7 @@ roll() {
 	echo "+2 Arnnisen the Gray"
     fi
 
-if [[ -e ../../.bless ]]; then
+    if [[ -e ../../.bless ]]; then
 	let "NUM=NUM+2"
 	echo "+2 POSIX wizard bonus!"
     fi
@@ -66,8 +66,8 @@ flee () {
     echo "You spend 1000 years as a mindless servant to the crawling chaos."
     echo "When you awaken, you may attempt to fight for your liberation."
     printf "\n"
-
 }
+
 resolve() {
     if [[ $MONSTER -eq $NUM ]]; then
 	echo "You dodge an attack, but you miss your mark as a result."
@@ -130,7 +130,7 @@ printf "\n"
 echo "Are you armed? y/n"
 read RESP
 
-if [ $RESP = "y" -o $RESP = "Y" ];then
+if [ $RESP = "y" -o $RESP = "Y" ]; then
 
     if grep -Po "sword" <<< $I &> /dev/null; then
         roll
